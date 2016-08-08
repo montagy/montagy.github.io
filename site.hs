@@ -57,6 +57,14 @@ main = hakyll $ do
                 >>= loadAndApplyTemplate "templates/default.html" indexCtx
                 >>= relativizeUrls
 
+    match "reflexapp.html" $ do
+      route idRoute
+      compile copyFileCompiler
+
+    match "js/*" $ do
+      route idRoute
+      compile copyFileCompiler
+
     match "templates/*" $ compile templateCompiler
 
 
