@@ -2,16 +2,17 @@ body {
     color: black;
     font-size: 16px;
     margin: 0px auto 0px auto;
-    width: 600px;
+    width: 70%;
+    max-width: 960px;
 }
 
-div#header {
+header {
     border-bottom: 2px solid black;
     margin-bottom: 30px;
     padding: 12px 0px 12px 0px;
 }
 
-div#logo a {
+div.logo a {
     color: black;
     float: left;
     font-size: 18px;
@@ -19,11 +20,11 @@ div#logo a {
     text-decoration: none;
 }
 
-div#header #navigation {
+nav {
     text-align: right;
 }
 
-div#header #navigation a {
+nav a {
     color: black;
     font-size: 18px;
     font-weight: bold;
@@ -32,7 +33,7 @@ div#header #navigation a {
     text-transform: uppercase;
 }
 
-div#footer {
+footer {
     border-top: solid 2px black;
     color: #555;
     font-size: 12px;
@@ -55,3 +56,14 @@ div.info {
     font-style: italic;
 }
 
+div.sourceCode {
+  padding: 8px;
+  margin-bottom: 1em;
+  background-color: rgb(250, 250, 250);
+  border: 1px solid rgb(200, 200, 200);
+  overflow: auto;
+}
+
+div.sourceCode pre {
+  margin: 0;
+}

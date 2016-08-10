@@ -17,19 +17,21 @@ title: ghcjs webgl 初探
 =======
 
 主要的依赖包是ghcjs-dom-0.2.4.0,就是js上的Dom.有了dom我们在浏览器上就几乎无所不能了.
-如果对Dom不是很了解的话,推荐去[MDN](https://developer.mozilla.org)上看文档
+如果对Dom不是很了解的话,推荐去[MDN](https://developer.mozilla.org)上看文档.
 起手import好依赖后,输入如下代码
 
-> main :: IO ()
-> main = runWebGUI $ \win -> do
->   enableInspector win
->   Just doc <- webViewGetDomDocument win
->   Just body <- getBody doc
->   Just canvas <- createElement doc (Just "canvas")
->   setAttribute canvas "width" "400"
->   setAttribute canvas "height" "400"
->   _ <- appendChild body (Just canvas)
->   gl :: WebGLRenderingContextBase <- coerce <$> getContext (coerce canvas) "webgl"
+~~~{.haskell}
+ main :: IO ()
+ main = runWebGUI $ \win -> do
+   enableInspector win
+   Just doc <- webViewGetDomDocument win
+   Just body <- getBody doc
+   Just canvas <- createElement doc (Just "canvas")
+   setAttribute canvas "width" "400"
+   setAttribute canvas "height" "400"
+   _ <- appendChild body (Just canvas)
+   gl :: WebGLRenderingContextBase <- coerce <$> getContext (coerce canvas) "webgl"
+~~~
 
 runWebGUI和enableInspector是兼容gtk的写法,在浏览器上理解为当html文件加载完毕后开始
 执行就行,相当于jquery的document ready系列.
@@ -37,20 +39,22 @@ haskell上是没有Nullable(null, undefined)的,但有Maybe,它比Nullable要安
 出现Nullable值的地方就是Maybe值.我们在代码中忽略了Nothing值,直接取了Just,这肯定是在
 偷懒,但相对是安全的.在实际项目中可以写个waitJust函数来等待结果,保证程序的正确性
 
->  waitJust :: IO (Maybe a) -> IO a
->  waitJust f = do
->    ma <- f
->    case ma of
->      Nothing -> threadDelay a_little_sec >> whenJust f
->      Just a -> return a
+~~~{.haskell}
+  waitJust :: IO (Maybe a) -> IO a
+  waitJust f = do
+    ma <- f
+    case ma of
+      Nothing -> threadDelay a_little_sec >> whenJust f
+      Just a -> return a
+~~~
 
 可能很多人都习惯性的打开OverLoadedStrings,但是在ghcjs-dom下最好别开,因为很多参数的
 约束都是ToJSString的实例,而ToJSString的三个实例JSString, Text, String在
 OverLoadedStrings打开的情况下反而不好判断了.例如代码中的 
 
-~~~~~{.haskell}
+~~~{.haskell}
 setAttribute canvas "width" "400"
-~~~~~
+~~~
 
 不打开就是String,打开了是String或者Text,在没有更多信息的情况下,编译器无法判断.
 
