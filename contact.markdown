@@ -1,6 +1,7 @@
 ---
-title: Contact
+title: 联系方式
 ---
 
-I live in a small hut in the mountains of Kumano Kodō on Kii Hantō and would not
-like to be contacted.
+邮箱: jencean@126.com
+
+只要办公就能看到
