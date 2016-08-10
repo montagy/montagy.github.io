@@ -2,6 +2,12 @@
 title: ghcjs webgl 初探(二)
 ---
 
+因为只是想分享ghcjs和webgl的使用经验,所以很多地方说的很粗,因为涉及的知识确实很多,
+推荐两本书,一本haskell基础的 *learn you a haskell for great good*,中文翻译为haskell趣学,
+网上有在线版.一本webgl入门的 *webgl programming guide* 中文翻译webgl编程指南.
+
+我想写一个系列的文章,在写了一定数量后会在github创个项目分享配套的代码.
+
 ## 关于webgl
 
 现阶段的webgl是opengl ES2.0,后者在移动设备上取得了很大的成功,而在web上还在与flash争地盘.
@@ -93,9 +99,4 @@ clear是清空现在画布上的缓存内容,这是准备绘制的一个过程.�
 ,然后在浏览器打开,就能看到一个400X400的黑框里有个红色的小方块.
 
 ## 后记
-
-因为只是想分享ghcjs和webgl的使用经验,所以很多地方说的很粗,因为涉及的知识确实很多,
-推荐两本书,一本haskell基础的 *learn you a haskell for great good*,中文翻译为haskell趣学,
-网上有在线版.一本webgl入门的 *webgl programming guide* 中文翻译webgl编程指南.
-
-上面我们的着色器program在CPU中并没有用到,下篇我会讲讲如何与着色器交互.我想写一个系列的文章,在写了一定数量后会在github创个项目分享配套的代码.
+上面我们的着色器program在CPU中并没有用到,下篇我会讲讲如何与着色器交互.
