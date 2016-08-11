@@ -1,3 +1,4 @@
+
 html,
 body
 {
@@ -413,4 +414,11 @@ textarea.form-control
   margin-top : 10px;
   padding    : 10px 5px 10px 5px;
 }
+
+.login_info
+{
+  color : #000000;
+}
+
+
 /* Generated with Clay, http://fvisser.nl/clay */
