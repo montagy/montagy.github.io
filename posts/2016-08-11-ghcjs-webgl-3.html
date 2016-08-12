@@ -29,6 +29,11 @@
     发表于: August 11, 2016
     
 </div>
+<div class="info">
+    
+      Tags: <a href="../tags/ghcjs.html">ghcjs</a>, <a href="../tags/webgl.html">webgl</a>
+    
+</div>
 
 <p>着色器程序是在GPU中运行的,那CPU如何将数据发送给GPU来运行了?</p>
 <h2 id="webgl">WebGL</h2>
@@ -53,6 +58,17 @@ uniform1f gl uPointSize <span class="fl">10.0</span></code></pre></div>
 <p>同attribute类似,我们用getUniformLocation通过变量名来得到u_PointSize的地址,不同于attribute变量的地址 是个Int32数字,uniform变量的地址是个WebGLUniformLocation类型,而uniform1f需要的也是这个类型,免去了转换.</p>
 <h2 id="后记">后记</h2>
 <p>我们的程序非常简单,给a_Position就传输了一个顶点(0.5, 0.0, 0.0),给uniform1f传输了一个浮点数10.0.这在 webgl的世界里面就是print hello world级别.我想再写完一篇webgl的绘制原理之后再深入webgl.下篇我还是把重心放在 ghcjs上,演示下ghcjs-dom下如何绑定事件.</p>
+
+<nav>
+  <ul>
+    
+      <li class="left"><a href="../posts/2016-08-10-ghcjs-webgl-2.html">Previous</a></li>
+    
+    
+      <li class="right"><a href="../posts/2016-08-12-ghcjs-webgl-4.html">Next</a></li>
+    
+  </ul>
+</nav>
 
         </div>
         <!--<div id="disqus_thread"></div>-->

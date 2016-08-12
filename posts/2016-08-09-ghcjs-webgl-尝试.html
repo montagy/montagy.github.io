@@ -4,7 +4,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width" />
-        <title>montagy - ghcjs webgl 初探</title>
+        <title>montagy - ghcjs webgl 初探(一)</title>
         <link rel="stylesheet" type="text/css" href="../css/default.css" />
         <link rel="stylesheet" type="text/css" href="../css/syntax.css" />
         <meta name="keywords" content="montagy blog home haskell programming" />
@@ -23,10 +23,15 @@
         </header>
 
         <div class="content">
-            <h1>ghcjs webgl 初探</h1>
+            <h1>ghcjs webgl 初探(一)</h1>
 
             <div class="info">
     发表于: August  9, 2016
+    
+</div>
+<div class="info">
+    
+      Tags: <a href="../tags/ghcjs.html">ghcjs</a>, <a href="../tags/webgl.html">webgl</a>
     
 </div>
 
@@ -62,6 +67,15 @@
 <p>实例代码中的最后一行用到了coerce(强制类型转换),简单来说coerce能在具有相同运行时 类型的不同类型间转换.它是在编译时转换的,如果不能转换的话是编译错误,所以它是非常 安全的. ghcjs中从js导入的函数在haskell中对应的类型是JSVal.js中的Element对象是JSVal, HTMLCanvasElement也是一个JSVal,而我们知道在js中HTMLCanvasElement也是Element, 所以这两者间是能通过coerce强制转化的. 如果不用coerce的话,我们可以查文档找到各类型间的转换方式,比如代码中的canvas,现在是个 Element,转为HTMLCanvasElement的话可以castToHTMLCanvasElement, getContext得到的是一个JSVal,我们可以直接用WebGLRenderingContextBase构造器封装它 为WebGLRenderingContextBase类型. 最后我们得到了gl::WebGLRenderingContextBase(注意这种写法是打开了ScopedTypeVariables扩 展的),而所有的webgl操作都是在gl下面进行的,下篇我们再聊webgl.</p>
 <h1 id="后记">后记</h1>
 <p>本人水平有限,很多知识点都是浅尝辄止,只说了自己了解的. 欢迎大家修正和讨论.一起学习,共同进步.</p>
+
+<nav>
+  <ul>
+    
+    
+      <li class="right"><a href="../posts/2016-08-10-ghcjs-webgl-2.html">Next</a></li>
+    
+  </ul>
+</nav>
 
         </div>
         <!--<div id="disqus_thread"></div>-->
