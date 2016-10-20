@@ -48,7 +48,7 @@
 <div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">class</span> <span class="dt">Monad</span> m <span class="ot">=&gt;</span> <span class="dt">Stream</span> s m t <span class="fu">|</span> s <span class="ot">-&gt;</span> t <span class="kw">where</span>
 <span class="ot">  uncons ::</span> s <span class="ot">-&gt;</span> m (<span class="dt">Maybe</span>(t, s))</code></pre></div>
 <p>从ParsecT是MonadTrans我们就能推断出会存在run函数来得到结果,在这里是runParsecT, runParser, parse.</p>
-<p>除开一些与ParsecT的数据结构有关的功能之外,ParsecT的功能主要体验在两方面,一个是ParsecT的组合,一个是生成ParsecT.</p>
+<p>除开一些与ParsecT的数据结构有关的功能之外,ParsecT的功能主要体现在两方面,一个是ParsecT的组合,一个是生成ParsecT.</p>
 <h4 id="组合combinators">组合(Combinators)</h4>
 <p>组合能让我们将多个小的parser组成一个大的parser.在使用parser的时候设计到一个消耗(consumed)的概念,如何parser在开头处匹配成功,然后继续匹配时失败了,它的结果是失败的,但它消耗了input.如果parser一开始就失败了,那它就没有消耗input.这里try就是提供假装不消耗input的能力,与&lt;|&gt;的配合使用会经常出现.&lt;|&gt;是出自Alternative,表示抉择,左边如果成功了就返回左边的结果,如果失败了执行右边.但它要求左边是不消耗input的.choice是由&lt;|&gt;构建的.</p>
 <p>many系列表示对一个parser执行多次,它是基于manyAccum的.manyAccum是基于定义构建的原子性操作.option系列也是基于&lt;|&gt;的.sepBy p q系列的q是个分隔符,就是运行p,然后运行q,但只返回p,如此执行多次直到遇到匹配失败,返回[p].例如anyChar <code>seqBy</code> char ‘,’,在匹配“a,b,c,d”时得到[‘a’,‘b’,‘c’,‘d’](=“abcd”).然后是endBy系列与sepEndBy系列也好理解了,end表示以什么结尾.chain系列里值为函数的ParsecT,在使用的时候是fold的意思.</p>
@@ -72,6 +72,8 @@
     
       <li class="left"><a href="../posts/2016-08-19-ghcjs-webgl-6.html">Previous</a></li>
     
+    
+      <li class="right"><a href="../posts/2016-10-20-all-about-forall.html">Next</a></li>
     
   </ul>
 </nav>
