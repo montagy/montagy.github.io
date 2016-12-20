@@ -4,7 +4,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width" />
-        <title>montagy - 博客</title>
+        <title>montagy - 个人作品</title>
         <link rel="stylesheet" type="text/css" href="./css/default.css" />
         <link rel="stylesheet" type="text/css" href="./css/syntax.css" />
         <meta name="keywords" content="montagy blog home haskell programming" />
@@ -22,23 +22,19 @@
         </header>
 
         <div class="content">
-            <h1>博客</h1>
+            <h1>个人作品</h1>
 
-            <ul>
-    
-        <li>
-            <a href="./posts/2016-08-11-ghcjs-webgl-3.html">ghcjs webgl 初探(三)</a> - August 11, 2016
-        </li>
-    
-        <li>
-            <a href="./posts/2016-08-10-ghcjs-webgl-2.html">ghcjs webgl 初探(二)</a> - August 10, 2016
-        </li>
-    
-        <li>
-            <a href="./posts/2016-08-09-ghcjs-webgl-%E5%B0%9D%E8%AF%95.html">ghcjs webgl 初探</a> - August  9, 2016
-        </li>
-    
-</ul>
+            <div>
+  <p>
+    <a href="./reflexapp.html">Reflex应用</a>: 全栈haskell尝试.
+    <p>后端是由servant框架编写的rest服务，使用的数据库是mongoDB</p>
+    <p>前端是由clay编译成css，ghcjs编译成js。ghcjs是使用了框架reflex-dom,一个基于reflex的FRP框架。</p>
+    <p>由haskell做全栈web开发是非常可行的，而且haskell的开发效率和维护成本都是强于js的。
+    但haskell社区对于产品级别的开发重视程度远不如js，又或者说用haskell的人是远少于js的。ghcjs和reflex都进展缓慢，所以在前端haskell有两个非常明显的劣势。1,ghcjs编译出来的文件过大。（最新的基于ghc-8.01的dedupe版本ghcjs相比之前版本缩小的40%体积，但还是不够)
+      2,reflex是基于DOM操作的，在频繁的DOM操作上速度远慢于现在流行的基于Viturl-DOM的框架。（ghcjs编译出来的代码本身就是基于函数式调用的，先天也慢一点)
+    </p>
+  </p>
+</div>
 
 
         </div>
