@@ -1,0 +1,26 @@
+---
+title: ubuntu-16.10下的ghcjs相关
+---
+
+自己匆忙的重装了系统，用上了ubuntu-16.10,因为工作都是基于git的，以为没什么可失去的，确实零障碍迁移了，但忘了博客的git有很长时间没有push,所以博客的内容能看见的少了很多。并不是失去了，只是现在保存的是html格式，手动添加url或者手动改为markdown格式都需要一些无聊的工作。加上一直想对博客做些整理，所以先放着了。
+
+新系统由于gcc升级到了6.2,算是次大跃进，所以在安装haskell开发环境上并不顺利，虽然所需信息都能google得到，但阅读了大量的讨论才搞清楚也花了不少时间。所以总结下：
+
+首先安装stack是没有任何问题的，在stack下用的ghc-8,也就是最新的LTS-7系列。但ghc安装完成后在编译一些软件时出现了问题，比如old-time,network,memory。这是因为gcc一个变动的原因ghc在编译时的配置发生了变化。解决方法：配置文件在~/.stack/programs/x86_64-linux/ghc-nopie-8.0.1/lib/ghc-8.0.1/settings.其中
+
+~~~{.c}
+("C compiler flags", "-fno-PIE -fno-stack-protector"),
+("C compiler link flags", "-no-pie"),
+~~~
+
+修改第一行的。-fno-PIE为-no-pie就可以了。有人反应这可能是个书写错误，官方最新的rc中做了修正，可以在这个[PPA](https://launchpad.net/~hvr/+archive/ubuntu/ghc) 下载修正后的ghc, 然后在stack 配置文件中添加system-ghc:true也是可以的。我两步都做了，因为现在cabal的new-build也是不输stack的，主要stack的网络是硬伤。
+
+然后就是ghcjs了，我用tolysz的stack配置，需要的可以在reddit上搜，ghcjs正常安装和boot，但在编译pkg时遇到各种问题，其实都是缺少相关的处理软件，比如happy,hsc2hs,然而我用cabal安装过他们呀！具体问题产生的原因不详，解决方法：用stack安装
+
+~~~{.c}
+stack --no-terminal --install-ghc install hsc2hs
+~~~
+
+看安装pkg时的错误提示，可能需要安装happy,hsc2hs等。
+
+最后问题解决了，happy ending.
