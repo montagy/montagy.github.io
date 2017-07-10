@@ -59,7 +59,7 @@ main = hakyll $ do
 
             getResourceBody
                 >>= applyAsTemplate indexCtx
-                >>= loadAndApplyTemplate "templates/default.html" indexCtx
+                >>= loadAndApplyTemplate "templates/home.html" indexCtx
                 >>= relativizeUrls
 
     match "reflexapp.html" $ do
