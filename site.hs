@@ -42,9 +42,9 @@ main = hakyll $ do
                 >>= loadAndApplyTemplate "templates/default.html" archiveCtx
                 >>= relativizeUrls
 
-    match "apps.html" $ do
+    create ["apps.html"] $ do
       route idRoute
-      compile $ getResourceBody
+      compile $ makeItem ""
         >>= loadAndApplyTemplate "templates/apps.html" defaultContext
         >>= loadAndApplyTemplate "templates/default.html" defaultContext
         >>= relativizeUrls
