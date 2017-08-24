@@ -15,6 +15,12 @@ main = hakyll $ do
         route   idRoute
         compile compressCssCompiler
 
+    match "js/*" $ do
+      route idRoute
+      compile copyFileCompiler
+
+    match "templates/*" $ compile templateCompiler
+
     match "about.rst" $ do
         route   $ setExtension "html"
         compile $ pandocCompiler
@@ -65,13 +71,6 @@ main = hakyll $ do
     match "reflexapp.html" $ do
       route idRoute
       compile copyFileCompiler
-
-    match "js/*" $ do
-      route idRoute
-      compile copyFileCompiler
-
-    match "templates/*" $ compile templateCompiler
-
 
 --------------------------------------------------------------------------------
 postCtx :: Context String
