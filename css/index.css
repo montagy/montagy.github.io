@@ -1,0 +1,27 @@
+@import 'css/default.css';
+@import 'css/syntax.css';
+@import 'css/main.css';
+* {
+  box-sizing: border-box;
+}
+html {
+  font-size: 100%;
+}
+html, body {
+  height: 100%;
+}
+html, body, p, h1 {
+  margin: 0;
+}
+body {
+  font-family: arial, helvetica, sans-serif;
+  background-color: color(var(--baseColor) b(+10%));
+  overflow-x: hidden;
+  line-height: 1.5;
+}
+a {
+  text-decoration: none;
+  &:visited {
+    color: #7d5d8a;
+  }
+}

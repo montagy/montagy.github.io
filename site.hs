@@ -11,9 +11,11 @@ main = hakyll $ do
         route   idRoute
         compile copyFileCompiler
 
-    match "css/*" $ do
+    match "css/index.css" $ do
         route   idRoute
-        compile compressCssCompiler
+        compile $ getResourceString
+          >>= withItemBody (unixFilter "postcss" ["-c", "postcss.config.js", "--no-map"])
+          >>= withItemBody (return . compressCss)
 
     match "js/*" $ do
       route idRoute
@@ -49,19 +51,18 @@ main = hakyll $ do
         >>= loadAndApplyTemplate "templates/default.html" defaultContext
         >>= relativizeUrls
 
-    match "index.html" $ do
+    create ["index.html"] $ do
         route idRoute
         compile $ do
-            posts <- recentFirst =<< loadAll "posts/*"
-            let indexCtx =
-                    listField "posts" postCtx (return posts) `mappend`
-                    constField "title" ""                `mappend`
-                    defaultContext
+          posts <- recentFirst =<< loadAll "posts/*"
+          let indexCtx =
+                listField "posts" postCtx (return posts) `mappend`
+                constField "title" ""                `mappend`
+                defaultContext
 
-            getResourceBody
-                >>= applyAsTemplate indexCtx
-                >>= loadAndApplyTemplate "templates/home.html" indexCtx
-                >>= relativizeUrls
+          makeItem ""
+            >>= loadAndApplyTemplate "templates/home.html" indexCtx
+            >>= relativizeUrls
 
     match ("static/*/*" .&&. fromRegex "(css|js|html)$") $ do
       route idRoute

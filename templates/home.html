@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>Montagy</title>
-    <link rel="stylesheet" href="/css/default.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="/css/index.css" type="text/css" media="all" />
   </head>
   <body>
     <div class="container">
@@ -13,14 +13,15 @@
         <nav class="nav">
           <ul>
             <li><a href="/">主页</a></li>
-            <li><a href="/apps.html">作品</a></li>
+            <li><a href="/static/reddit/index.html">应用</a></li>
             <li><a href="/blog.html">博客</a></li>
           </ul>
         </nav>
       </header>
       <div class="main">
         <section class="blog__wrapper cut__line">
-          $body$
+          <h2>最新文章</h2>
+          $partial("templates/post-list.html")$
         </section>
         <section class="about">
           <h2>Hi I'm Montagy</h2>
