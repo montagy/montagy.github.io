@@ -21,12 +21,6 @@ main = hakyll $ do
 
     match "templates/*" $ compile templateCompiler
 
-    match "about.rst" $ do
-        route   $ setExtension "html"
-        compile $ pandocCompiler
-            >>= loadAndApplyTemplate "templates/default.html" defaultContext
-            >>= relativizeUrls
-
     match "posts/*" $ do
         route $ setExtension "html"
         compile $ pandocCompiler
@@ -51,6 +45,7 @@ main = hakyll $ do
     match "apps.html" $ do
       route idRoute
       compile $ getResourceBody
+        >>= loadAndApplyTemplate "templates/apps.html" defaultContext
         >>= loadAndApplyTemplate "templates/default.html" defaultContext
         >>= relativizeUrls
 
@@ -68,7 +63,7 @@ main = hakyll $ do
                 >>= loadAndApplyTemplate "templates/home.html" indexCtx
                 >>= relativizeUrls
 
-    match "reflexapp.html" $ do
+    match ("static/*/*" .&&. fromRegex "(css|js|html)$") $ do
       route idRoute
       compile copyFileCompiler
 
