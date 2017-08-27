@@ -1,6 +1,7 @@
 @import 'css/home.css';
 @import 'css/syntax.css';
 @import 'css/header.css';
+@import 'css/resume.css';
 :root {
   --baseColor: white;
 }

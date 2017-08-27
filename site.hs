@@ -47,7 +47,7 @@ main = hakyll $ do
     create ["resume.html"] $ do
       route  idRoute
       compile $ do
-        let ctx = constField "title" "简历" `mappend` postCtx
+        let ctx = constField "title" "" `mappend` postCtx
         loadBody "other/resume.md"
           >>= makeItem
           >>= loadAndApplyTemplate "templates/default.html" ctx
