@@ -43,6 +43,14 @@ main = hakyll $ do
                 >>= loadAndApplyTemplate "templates/archive.html" archiveCtx
                 >>= loadAndApplyTemplate "templates/default.html" archiveCtx
                 >>= relativizeUrls
+    match "other/*" $ compile pandocCompiler
+    create ["resume.html"] $ do
+      route  idRoute
+      compile $ do
+        let ctx = constField "title" "简历" `mappend` postCtx
+        loadBody "other/resume.md"
+          >>= makeItem
+          >>= loadAndApplyTemplate "templates/default.html" ctx
 
     create ["apps.html"] $ do
       route idRoute
