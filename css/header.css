@@ -1,5 +1,8 @@
 .header {
   width: 100%;
+  @media print {
+    display: none;
+  }
   & h1 {
     font-size: 3.5em;
     line-height: 3em;

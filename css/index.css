@@ -72,6 +72,9 @@ ul {
   & > * {
     margin-left: 10%;
   }
+  @media print {
+    display: none;
+  }
 }
 .posts {
   margin-top: 2em;
@@ -93,7 +96,4 @@ div.sourceCode {
   & pre {
     margin: 0;
   }
-}
-
-div.sourceCode pre {
 }
