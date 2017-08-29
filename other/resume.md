@@ -12,7 +12,7 @@ title: 找工作
 
  联系方式： 17085526609 E-mail: jencean@126.com
 
- 个人网站： <https://montagy.com>
+ 个人网站： <http://montagy.com>
 
    github: <https://github.com/montagy>
 
@@ -40,7 +40,7 @@ Web前端开发工程师 */* Html5游戏开发工程师 */* 手机App开发（We
 3. 优秀程序员与普通程序员效率相差至少五倍，我不是普通的程序员而且我正在成为优秀的程序员
 
 ## 项目经验
-1. Reddit浏览(WIP): <https://montagy.com/static/reddit/index.html> 方便自己浏览reddit制作的
+1. Reddit浏览(WIP): <http://montagy.com/static/reddit/index.html> 方便自己浏览reddit制作的
 
     * 用react,css_module实现的单页应用
     * 用postcss编写更模块化的css,并用到了很多css新技术，如color function
@@ -52,7 +52,7 @@ Web前端开发工程师 */* Html5游戏开发工程师 */* 手机App开发（We
 > 心得： 初版中用了redux+saga来管理state,后来为了体验无添加的react就去掉了。react由顶向下，
 由大组件拆成可复用的小组件的开发思路，加上单向绑定使多层嵌套的数据传递成了负担,redux是很有必要的
 
-2. 个人简历： <https://montagy.com/static/resume/index.html> 仿造别人的外观制作的
+2. 个人简历： <http://montagy.com/static/resume/index.html> 仿造别人的外观制作的
 
     * 用react,styled-components实现的单页应用，一次css-in-js的尝试
     * 自己设计的布局、交互，参考了部分动画。没有使用框架
