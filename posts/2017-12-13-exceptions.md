@@ -86,3 +86,44 @@ instance Exception SomethingBad
 
 然后用throwM来抛出这个异常。这个异常就处在一个相对低的call stack上，可以被上层捕获。
 
+
+## 关于异步异常
+throwIO 会等待目标线程处理完毕后才返回，这意味着调用throwIO的线程会阻塞，这也使得throwIO函数成了同步两个线程的一个方式，
+一个线程因为调用了throwIO被阻塞时，这个线程本身仍然可能因为接收到异步异常而被中断。
+
+mask函数是让异步运行在一个“安全点”上，运行时不会受到干扰，直到其返回。
+```haskell
+mask :: ((forall a. IO a -> IO a) -> IO b) -> IO b
+```
+IO a -> IO a是一个restore操作，用来恢复mask之外的屏蔽状态。
+```haskell
+mask $ \restore -> do
+  x <- acquire
+  restore (do_somthing_with x) `onException` release
+  release
+```
+在代码中，acquire的运行是在安全的环境中，不会受到其他线程异常的打扰，得到结果x后.
+用restore来解除屏蔽，这时可被其他线程打扰。只有在restore中才可触发异步异常！
+最后的release也是屏蔽状态.
+IO运算中是可以查询屏蔽状态的
+```haskell
+getMaskingState :: IO MaskingState
+```
+与mask一起的是uninterruptibleMask,他比mask更强，mask的保护是有范围的，uninterruptibleMask提供绝对的无干扰。问题在于我们平常中断程序，临时改变任务都是需要异步中断的，这样mask更适用，uninterruptibleMask要慎用，会导致程序无响应。
+
+mask在使用上更多不是阻止异步异常，而是提供一个异步异常的poll。因为异步异常可能发生在任何地方任何时候，程序有被随时中断的风险，mask就是保证一个操作的安全，得到结果后再来处理异常。
+
+allowInterrupt用来在mask中非restore的地方制造异常。
+当想保证一段statefull的代码的正确运行时使用STM, mask, uninterruptibleMask.
+
+被中断就会出问题的操作（即需要保护的操作）
+- operations on IORef from Data.IORef
+- STM transactions that do not use retry
+- everything from the Foreign modules
+- everything from Control.Exception except for throwTo
+- tryTakeMVar, tryPutMVar, isEmptyMVar
+- takeMVar if the MVar is definitely full, and conversely putMVar if the MVar is definitely empty
+- newEmptyMVar, newMVar
+- forkIO, forkIOUnmasked, myThreadId
+
+
