@@ -25,7 +25,7 @@ myFunction :: String -> ExceptT MyException IO Int
 
 用Text取代MyException可以解决compose的问题，但Text相比MyException失去了结构意义。
 
-另一个常见错误：讲所有可能产生异步异常的地方都mask起来了。这会导致CPU沉余。
+另一个常见错误：将所有可能产生异步异常的地方都mask起来了。这会导致CPU沉余。
 
 ## MonadThrow
 
