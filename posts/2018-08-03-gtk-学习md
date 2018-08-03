@@ -1,0 +1,45 @@
+GSettings
+
+settings_bind :: Settings -> setting key -> object -> object property -> flags -> IO ()
+
+settings_new :: schema id -> Settings
+
+Gtk.ComboBox 的active-id 是列中的值（Text)
+
+TextBuffer的tag(TextTag)
+
+手动改变文本的样式(如font)需要TextTag，步骤：
+1， create tag，buffer可以直接create tag，如果不可则初始化一个tag，获取buffer的tagTable，添加tag到tagTable中（add）
+2， applyTag，applyTag需要确定apply的范围，因此需要获取stat iter和 end iter
+
+applyTag说明很多属性是需要手动emmit signal了才会使用的。
+
+
+object_bind_property :: source object -> source property -> target object -> target property -> flags -> Binding
+
+GActionGroup 和GActionMap是两个不同的接口，前者是管理一群GAction，可以查询现有actions的状态和触发action相关的事件，
+后者是建立一个map，来添加和删除actions
+
+GAction表示一个signal,有属性state, name, enabled, parameter-type, state-type,有触发函数。
+可以自定义一个GAction,然后设置触发条件
+
+menu分为ApplicationWindow menu(win.)和Application menu(app.)，window menu也就是menubar，二者显示的地方不同,对应的actionMap,actionGroup都不同
+
+win
+<menubar>
+  <menu>
+    <menuitem>
+    </menuitem>
+  </menu>
+</menubar>
+
+app
+<menu>
+  <section>
+    <item>
+
+GtkActionable是个接口，关联widget和actions,action-name, action-target
+在widget的祖先中的action-group中寻找这个action-name.
+
+
+xml 中的signal,gtk会尝试在g_module_symbol中寻找handler,也可以自己用gtk_builder_connect_signals_full传递
