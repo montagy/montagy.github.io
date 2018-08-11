@@ -42,4 +42,22 @@ GtkActionable是个接口，关联widget和actions,action-name, action-target
 在widget的祖先中的action-group中寻找这个action-name.
 
 
-xml 中的signal,gtk会尝试在g_module_symbol中寻找handler,也可以自己用gtk_builder_connect_signals_full传递
+xml 中的signal,gtk会尝试在g_module_symbol中寻找handler,也可以自己用gtk_builder_connect_signals传递
+传递前需要用builderAddCallbackSymbol手动绑定，然后builderConnectSignals builder nullPtr。
+builderConnectSignals的作用就是连接builderAddCallbackSymbol中建立的对应关系。
+
+ui file中，有的container有child property
+<object class="GtkBox">
+  <child>
+    <object class="GtkEntry" id="entry1"/>
+    <packing>
+      <property name="pack-type">start</property>
+    </packing>
+  </child>
+</object>
+注意packing和object是兄弟，同属于child的子元素
+
+Gtk.Image与图片有关的都找他。它本身没有Window的概念，既不可交互，如果想要交互，将它放入GtkEventBox里面，然后与EventBox交互
+Gtk有程序可以将图片转换为C variable declaration，这样可以不以来于文件。(gdk-pixbuf-csource)
+
+操作系统有内置的图标(icons)，通过GtkIconTheme获取为pixbuf形式，然后用GtkImage现实出来
